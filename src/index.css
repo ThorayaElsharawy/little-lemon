@@ -3,7 +3,6 @@
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
   font-family: "Karla", sans-serif;
 }
 
@@ -19,12 +18,12 @@ li {
 
 nav,
 header section,
-main {
+main,
+footer section {
   padding: 15px 13%;
 }
 
 nav {
-
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,8 +46,8 @@ ul.nav_items li {
 
 ul.nav_items li a {
   color: black;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.125rem;
+  font-weight: 400;
 }
 
 ul.nav_items li a:hover {
@@ -213,12 +212,52 @@ section.menu .title button {
   padding: 0 15px;
 }
 
+/* /////////////////////////Footer */
+
+footer {
+  background-color: #D9D9D9;
+}
+
+footer section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+
+}
+
+footer h3 {
+  color: #000;
+  margin: 0;
+}
+
+footer ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+footer ul li {
+  color: #504C4C;
+}
+
+footer ul li a {
+  color: #504C4C;
+}
+
+.footer_logo img {
+  width: 100px;
+}
+
 
 @media (max-width: 992px) {
-  nav , header section ,main {
+  nav , header section ,main, footer section {
     padding: 15px 6%;
   }
-  
+
   nav {
     display: block;
   }
@@ -240,10 +279,8 @@ section.menu .title button {
 
 
 
-
-
 @media (max-width: 768px) {
-  nav , header section ,main {
+  nav , header section ,main, footer section {
     padding: 15px 13%;
   }
 
@@ -323,10 +360,15 @@ section.menu .title button {
     grid-template-columns: 1fr;
   }
 
+  footer section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
 }
 
 @media (max-width: 576px) {
-  nav , header section ,main {
+  nav , header section ,main,  footer section{
     padding: 15px 6%;
   }
 }

@@ -1,5 +1,9 @@
+import Menu from "./Menu";
+
 export default function Main() {
     return (
-        <main></main>
+        <main>
+            <Menu />
+        </main>
     )
 }

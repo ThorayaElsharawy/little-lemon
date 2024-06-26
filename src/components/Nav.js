@@ -13,7 +13,7 @@ export default function Nav() {
             <div className="menu-icon">
                 <img src={hamburgerIcon} />
             </div>
-            <ul>
+            <ul className="nav_items">
                 <li><a href="#">HOME</a></li>
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">MENU</a></li>

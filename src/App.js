@@ -1,17 +1,27 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Nav from "./components/Nav";
+
+import HomePage from "./pages/Homepage"
+import BookingPage from "./pages/BookingPage"
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+  Route
+} from "react-router-dom"
+
+const router = createBrowserRouter(
+  createRoutesFromElements([
+    <>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/booking" element={<BookingPage />} />
+    </>
+
+  ])
+)
 
 function App() {
   return (
-    <div className="">
-      <Nav />
-      <Header />
-      <Main />
-      <Footer />
-    </div>
-  );
+    <RouterProvider router={router} />
+  )
 }
 
 export default App;

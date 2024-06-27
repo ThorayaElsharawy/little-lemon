@@ -297,19 +297,17 @@ section.menu .title button {
   border-start-start-radius: 6px;
   border-end-start-radius: 6px;
 }
+
 .testimonials .card .name {
   margin-top: 5px;
   font-size: 18px;
 }
 
 .testimonials .card .right {
-  /* padding: 0 10px; */
   margin: auto;
 }
 
 .testimonials .comment {
-  /* width: 70%; */
-  /* padding: 0 10px; */
   color: #504C4C;
 }
 
@@ -378,6 +376,10 @@ footer ul li a {
     font-size: 40px;
   }
 
+  .about {
+    margin-top: 0;
+  }
+
   .banner h2,
   .about h2 {
     font-size: 25px;
@@ -388,14 +390,15 @@ footer ul li a {
   }
 
   .testimonials section {
+    padding-top: 50px;
+    padding-bottom: 50px;
     grid-template-columns: repeat(2, 1fr);
   }
 
 }
 
-
-
 @media (max-width: 768px) {
+
   nav,
   header section,
   main .menu,
@@ -490,11 +493,10 @@ footer ul li a {
     grid-template-columns: 1fr;
   }
 
- 
-
 }
 
 @media (max-width: 576px) {
+
   nav,
   header section,
   main .menu,
@@ -522,6 +524,9 @@ footer ul li a {
 
   .testimonials section {
     grid-template-columns: 1fr;
+
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 
 }

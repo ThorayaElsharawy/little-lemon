@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import restauranfood from "../assets/restauranfood.jpg"
 
 export default function Header() {
@@ -11,7 +12,9 @@ export default function Header() {
                         Mediterranean restaurant, focused on traditional
                         recipes served with a modern twist.
                     </p>
-                    <button>Reserve table</button>
+                    <button>
+                        <Link to='/booking'>Reserve table</Link>
+                    </button>
                 </div>
                 <div className="banner_img">
                     <img src={restauranfood} />

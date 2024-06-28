@@ -1,14 +1,18 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Main from "../components/Main";
+import Menu from "../components/Menu";
 import Nav from "../components/Nav";
+import About from "../components/About"
+import Testimonials from "../components/Testimonials";
 
 export default function Homepage() {
     return (
         <>
             <Nav />
             <Header />
-            <Main />
+            <Menu />
+            <Testimonials />
+            <About />
             <Footer />
         </>
     )

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import logo from "../assets/Logo.svg"
 import hamburgerIcon from "../assets/🦆 icon _hamburger menu.svg"
+import { Link } from "react-router-dom"
 
 export default function Nav() {
 
@@ -14,10 +15,10 @@ export default function Nav() {
                 <img src={hamburgerIcon} />
             </div>
             <ul className="nav_items">
-                <li><a href="#">HOME</a></li>
+                <li><Link to="/">HOME</Link></li>
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">MENU</a></li>
-                <li><a href="#">RESERVATION</a></li>
+                <li><Link to="/booking">RESERVATION</Link></li>
                 <li><a href="#">ORDER ONLINE</a></li>
                 <li><a href="#">LOGIN</a></li>
             </ul>

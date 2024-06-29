@@ -18,7 +18,7 @@ const updateTimes = (state, { type, payload }) => {
 }
 
 const seededRandom = function (seed) {
-    var m = 2**35 - 31;
+    var m = 2 ** 35 - 31;
     var a = 185852;
     var s = seed % m;
     return function () {
@@ -30,11 +30,11 @@ const fetchAPI = (date) => {
     let result = [];
     let random = seededRandom(date.getDate());
 
-    for(let i = 17; i <= 23; i++) {
-        if(random() < 0.5) {
+    for (let i = 17; i <= 23; i++) {
+        if (random() < 0.5) {
             result.push(i + ':00');
         }
-        if(random() < 0.5) {
+        if (random() < 0.5) {
             result.push(i + ':30');
         }
     }
@@ -54,6 +54,15 @@ const WrapperBookingBage = ({ dispatch, availableTimes }) => {
     const navigate = useNavigate();
 
     const submitForm = (formData) => {
+        const formDataJson = JSON.stringify(formData);
+        const existingFormData = localStorage.get('formData')
+
+        if(existingFormData) {
+            localStorage.setItem('formData', formDataJson)
+        } else {
+            localStorage.setItem('formData', formDataJson)
+        }
+
         if (submitAPI(formData)) {
             navigate('/confirmed')
         }

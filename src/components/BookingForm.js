@@ -10,11 +10,11 @@ const todayDate = () => {
     return todayDate
 }
 
-export default function BookingForm({ submitForm, availableTimes, dispatch }) {
+export default function BookingForm({ submitForm, availableTimes = [], dispatch }) {
     const [date, setDate] = useState('')
     const [form, setForm] = useState({
         time: '',
-        guests: '',
+        guests: 1,
         occasion: 'Birthday'
     })
 
@@ -40,7 +40,7 @@ export default function BookingForm({ submitForm, availableTimes, dispatch }) {
 
     return (
         <section className="reserve">
-            <h1>Reserve a table</h1>
+            <h1>Reserve Table</h1>
             <form onSubmit={handleSubmit}>
                 <div className="fieldset">
                     <label htmlFor="date">Choose date</label>
@@ -49,12 +49,12 @@ export default function BookingForm({ submitForm, availableTimes, dispatch }) {
                 <div className="fieldset">
                     <label htmlFor="time">Choose time</label>
                     <select id="time" name="time" onChange={handleChange} value={form.time}>
-                        {availableTimes.map((time, index) => (<option key={index}>{time}</option>))}
+                        {availableTimes.map(time => (<option key={time}>{time}</option>))}
                     </select>
                 </div>
                 <div className="fieldset">
                     <label htmlFor="guests">Number of guests</label>
-                    <input type="number" placeholder="1" min="1" max="10" id="guests" name="guests" value={form.guests} onChange={handleChange} />
+                    <input type="number" placeholder="1" min="1" max="10" id="guests" name="guests" value={form.guests} onChange={handleChange}/>
                 </div>
                 <div className="fieldset">
                     <label htmlFor="occasion">Occasion</label>

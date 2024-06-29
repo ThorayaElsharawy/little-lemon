@@ -10,48 +10,51 @@ const todayDate = () => {
     return todayDate
 }
 
-export default function BookingForm({ onSubmit, availableTimes }) {
-    
-
+export default function BookingForm({ submitForm, availableTimes, dispatch }) {
+    const [date, setDate] = useState('')
     const [form, setForm] = useState({
-        date: '',
-        time: '17:00',
+        time: '',
         guests: '',
         occasion: 'Birthday'
     })
 
+    const handleChangeDate = (e) => {
+        setDate(e.target.value);
+        dispatch(e.target.value)
+    }
+
     const handleChange = (e) => {
         setForm({
-            ...form, 
-            [e.target.name] : e.target.value
+            ...form,
+            [e.target.name]: e.target.value
         })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log('submit')
-        onSubmit(form)
-        console.log(form)
+        submitForm({
+            ...form,
+            date
+        })
     }
 
     return (
         <section className="reserve">
-         <h1>Reserve a table</h1>
+            <h1>Reserve a table</h1>
             <form onSubmit={handleSubmit}>
                 <div className="fieldset">
                     <label htmlFor="date">Choose date</label>
-                    <input type="date" id="date" name="date" value={form.date} onChange={handleChange} min={todayDate()} />
+                    <input type="date" id="date" name="date" value={date} onChange={handleChangeDate} min={todayDate()} required/>
                 </div>
                 <div className="fieldset">
                     <label htmlFor="time">Choose time</label>
-                    <select id="time" name="time" value={form.time} onChange={handleChange}>
-                        {/* {availableTimes.map(time => (<option>{time}</option>))} */}
-                        <option>00:00</option>
+                    <select id="time" name="time" onChange={handleChange} value={form.time}>
+                        {availableTimes.map((time, index) => (<option key={index}>{time}</option>))}
                     </select>
                 </div>
                 <div className="fieldset">
                     <label htmlFor="guests">Number of guests</label>
-                    <input type="number" placeholder="1" min="1" max="10" id="guests" name="guests" value={form.guests} onChange={handleChange}/>
+                    <input type="number" placeholder="1" min="1" max="10" id="guests" name="guests" value={form.guests} onChange={handleChange} />
                 </div>
                 <div className="fieldset">
                     <label htmlFor="occasion">Occasion</label>
@@ -61,7 +64,7 @@ export default function BookingForm({ onSubmit, availableTimes }) {
                     </select>
                 </div>
 
-                <button type="submit">Submit</button>
+                <button aria-label="On Click" type="submit">Book Now</button>
             </form>
         </section>
     )

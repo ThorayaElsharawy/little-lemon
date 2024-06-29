@@ -30,7 +30,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 ul.nav_items {
@@ -72,8 +72,6 @@ ul.nav_items li a:hover {
 .menu-icon img {
   height: 20px;
 }
-
-
 
 /* /////////////////////////////Header */
 
@@ -132,7 +130,7 @@ header section {
 
 /* /////////////////////////Menu */
 
-main {
+.menu {
   margin-top: 13rem;
 }
 
@@ -505,7 +503,7 @@ form button {
     z-index: 0;
   }
 
-  main {
+  .menu {
     margin-top: 0;
   }
 

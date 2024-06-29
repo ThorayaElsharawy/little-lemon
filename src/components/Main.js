@@ -55,7 +55,7 @@ const WrapperBookingBage = ({ dispatch, availableTimes }) => {
 
     const submitForm = (formData) => {
         const formDataJson = JSON.stringify(formData);
-        const existingFormData = localStorage.get('formData')
+        const existingFormData = localStorage.getItem('formData')
 
         if(existingFormData) {
             localStorage.setItem('formData', formDataJson)
@@ -64,7 +64,8 @@ const WrapperBookingBage = ({ dispatch, availableTimes }) => {
         }
 
         if (submitAPI(formData)) {
-            navigate('/confirmed')
+            console.log(formData)
+            // navigate('/confirmed')
         }
     }
 

@@ -53,7 +53,7 @@ export default function Menu() {
 
                         </div>
                         <div className="card_footer">
-                            <button>
+                            <button aria-label="On Click">
                             Order a delivery
                                 <span className="order_icon"><MdDeliveryDining /></span>
                             </button>

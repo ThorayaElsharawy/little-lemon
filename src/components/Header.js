@@ -13,11 +13,11 @@ export default function Header() {
                         recipes served with a modern twist.
                     </p>
                     <button>
-                        <Link to='/booking' style={{color: 'black'}}>Reserve table</Link>
+                        <Link aria-label="On Click" to='/booking' style={{color: 'black'}}>Reserve table</Link>
                     </button>
                 </div>
                 <div className="banner_img">
-                    <img src={restauranfood} />
+                    <img src={restauranfood} alt="restauran header image " />
                 </div>
             </section>
 

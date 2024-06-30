@@ -16,23 +16,14 @@ export default function Nav() {
             <div className="menu-icon" onClick={() => setToggle(!toggle)}>
                 <img src={hamburgerIcon} />
             </div>
-            <div className={`close-icon ${toggle? '': 'hide'}`} onClick={() => setToggle(!toggle)}>
+            <div className={`close-icon ${toggle? 'open': 'hide'}`} onClick={() => setToggle(!toggle)}>
                 <IoMdCloseCircle />
             </div>
-            <ul className={`${toggle ? 'hide' : 'nav_items'}`}>
-                <li><Link to="/">HOME</Link></li>
+            <ul className={`${toggle ? 'nav_items_md open' : 'nav_items nav_items_show'}`}>
+                <li onClick={() => setToggle(!toggle)}><Link to="/">HOME</Link></li>
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">MENU</a></li>
-                <li><Link to="/booking">RESERVATION</Link></li>
-                <li><a href="#">ORDER ONLINE</a></li>
-                <li><a href="#">LOGIN</a></li>
-            </ul>
-
-            <ul className={`nav_items_md ${toggle ? ' open' : 'close'}`}>
-                <li><Link to="/">HOME</Link></li>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">MENU</a></li>
-                <li><Link to="/booking">RESERVATION</Link></li>
+                <li  onClick={() => setToggle(!toggle)}><Link to="/booking">RESERVATION</Link></li>
                 <li><a href="#">ORDER ONLINE</a></li>
                 <li><a href="#">LOGIN</a></li>
             </ul>

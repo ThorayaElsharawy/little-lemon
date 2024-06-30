@@ -64,8 +64,6 @@ test('initializeTimes/updateTimes', () => {
   // Check the return value of initializeTimes
   expect(initializeTimesTest.availableTimes).toEqual(['17:00', '18:30']);
 
-  ///////////////////////////////////////////////////////
-
   const updateTimes = () => {
     return { availableTimes: mockFetchAPI(new Date()) };
   };

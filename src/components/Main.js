@@ -65,7 +65,6 @@ const WrapperBookingBage = ({ dispatch, availableTimes }) => {
         }
 
         if (submitAPI(formData)) {
-            console.log(formData)
             navigate('/confirmed')
         }
     }

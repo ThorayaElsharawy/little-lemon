@@ -26,10 +26,11 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
     })
 
     useEffect(() => {
+
         if (date.length > 0 && date > todayDate()) setError({ ...error, date: '' })
-        if (form.time) setError({ ...error, time: '' })
-        if (form.guests && form.guests <= 10 && form.guests > 0) setError({ ...error, guests: '' })
-        if (form.occasion) setError({ ...error, occasion: '' })
+        if (form.time > 0) setError({ ...error, time: '' })
+        if (form.guests.length > 0 && form.guests <= 10 && form.guests > 0) setError({ ...error, guests: '' })
+        if (form.occasion.length > 0) setError({ ...error, occasion: '' })
 
     }, [date, form.time, form.guests, form.occasion])
 
@@ -49,16 +50,36 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                 [field]: errorMessages[field]
             });
         }
+
+        if (field === 'time') {
+            console.log('here')
+            if (date.length === 0 || error.date.length > 0) {
+                setError({
+                    ...error,
+                    time: 'You have to pick date first to select time'
+                })
+            } else {
+                setError({
+                    ...error,
+                    time: ''
+                })
+            }
+        }
     };
 
     const handleChangeDate = (e) => {
         setDate(e.target.value);
         dispatch(e.target.value);
 
-        if(e.target.value < todayDate()) {
+        if (e.target.value < todayDate()) {
             setError({
                 ...error,
                 date: 'Select a date that comes after today'
+            })
+        } else {
+            setError({
+                ...error,
+                date: ''
             })
         }
     }
@@ -77,13 +98,18 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                 ...error,
                 guests: 'Please enter number between 1 to 10'
             })
+        } else {
+            setError({
+                ...error,
+                guests: ''
+            })
         }
-
         setForm({ ...form, guests: e.target.value })
+
     }
 
     const handleDisabled = () => {
-        return !(date && form.time && form.guests && form.occasion);
+        return Object.values(error).some((err) => err !== '') || !(date && form.time && form.guests && form.occasion);
     };
 
     const handleSubmit = (e) => {
@@ -124,9 +150,9 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                         className={error.time ? 'invalid' : ''}
                         required
                     >
-                        <option disabled hidden className="placeholder-option" value="">Select an appropriate time</option>
-
-                        {availableTimes.map(time => (<option value={time} key={time}>{time}</option>))}
+                        {error.date && <option hidden className="placeholder-option" value="">Choose date first</option>}
+                        <option hidden className="placeholder-option" value="">Choose date first</option>
+                        {(date.length > 0 && !error.date.length > 0) && availableTimes.map(time => (<option value={time} key={time}>{time}</option>))}
                     </select>
                     {error.time && <span style={{ color: 'red' }}>{error.time}</span>}
                 </div>
@@ -157,7 +183,7 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                         className={error.occasion ? 'invalid' : ''}
                         required
                     >
-                        <option>Select an Occasion</option>
+                        <option hidden>Select an Occasion</option>
                         <option>Birthday</option>
                         <option>Anniversary</option>
                     </select>

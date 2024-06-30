@@ -17,6 +17,7 @@ const updateTimes = (state, { type, payload }) => {
     return { availableTimes: fetchAPI(new Date()) }
 }
 
+
 const seededRandom = function (seed) {
     var m = 2 ** 35 - 31;
     var a = 185852;
@@ -65,7 +66,7 @@ const WrapperBookingBage = ({ dispatch, availableTimes }) => {
 
         if (submitAPI(formData)) {
             console.log(formData)
-            // navigate('/confirmed')
+            navigate('/confirmed')
         }
     }
 

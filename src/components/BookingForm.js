@@ -10,7 +10,8 @@ const todayDate = () => {
 }
 
 export default function BookingForm({ submitForm, availableTimes = [], dispatch }) {
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState('');
+
     const [error, setError] = useState({
         date: '',
         time: '',
@@ -69,11 +70,12 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
     }
 
     const handleDisabled = () => {
-        return !(date && form.time && form.guests);
+        return !(date && form.time && form.guests && form.occasion);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
         submitForm({
             ...form,
             date
@@ -87,7 +89,7 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                 <div className="fieldset">
                     <label htmlFor="date">Choose date</label>
                     <input
-                        className={error.date ? 'invalid' : ''}
+                        className={error.date ? 'invalid' : 'valid'}
                         onBlur={() => handleBlur('date')}
                         type="date"
                         id="date"
@@ -97,7 +99,6 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                         min={todayDate()}
                         required />
                     {error.date && <span style={{ color: 'red' }}>{error.date}</span>}
-
                 </div>
                 <div className="fieldset">
                     <label htmlFor="time">Choose time</label>

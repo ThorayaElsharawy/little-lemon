@@ -1,6 +1,6 @@
 import { useState } from "react"
 import logo from "../assets/Logo.svg"
-import hamburgerIcon from "../assets/🦆 icon _hamburger menu.svg"
+import hamburgerIcon from "../assets/hamburger_icon.svg"
 import { Link } from "react-router-dom"
 import { IoMdCloseCircle } from "react-icons/io";
 

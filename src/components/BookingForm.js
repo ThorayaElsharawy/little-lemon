@@ -72,7 +72,7 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
     }
 
     const handleChangeGuests = (e) => {
-        if (e.target.value > 10 || e.target.value < 0) {
+        if (e.target.value > 10 || e.target.value <= 0) {
             setError({
                 ...error,
                 guests: 'Please enter number between 1 to 10'

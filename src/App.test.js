@@ -43,11 +43,18 @@ test('valid input: accepts valid date without error message', () => {
   render(<BookingForm dispatch={dispatch} />);
   const dateInput = screen.getByLabelText("Choose date");
 
-  fireEvent.change(dateInput, { target: { value: '2024-06-30' } });
+  // Generate current date dynamically
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // Months are zero indexed
+  const day = ('0' + currentDate.getDate()).slice(-2);
+  const formattedDate = `${year}-${month}-${day}`;
+
+  fireEvent.change(dateInput, { target: { value: formattedDate } });
   fireEvent.blur(dateInput); // Trigger onBlur
 
   expect(screen.queryByText(/You have to pick a date/i)).toBeNull();
-  expect(dateInput).toHaveClass('valid')
+  expect(dateInput).toHaveClass('valid');
 })
 
 

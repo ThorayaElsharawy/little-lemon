@@ -13,7 +13,7 @@ export default function Header() {
                         recipes served with a modern twist.
                     </p>
                     <button>
-                        <Link to='/booking'>Reserve table</Link>
+                        <Link to='/booking' style={{color: 'black'}}>Reserve table</Link>
                     </button>
                 </div>
                 <div className="banner_img">

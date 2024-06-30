@@ -26,9 +26,9 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
     })
 
     useEffect(() => {
-        if (date.length > 0) setError({ ...error, date: '' })
+        if (date.length > 0 && date > todayDate()) setError({ ...error, date: '' })
         if (form.time) setError({ ...error, time: '' })
-        if (form.guests) setError({ ...error, guests: '' })
+        if (form.guests && form.guests <= 10 && form.guests > 0) setError({ ...error, guests: '' })
         if (form.occasion) setError({ ...error, occasion: '' })
 
     }, [date, form.time, form.guests, form.occasion])
@@ -53,20 +53,33 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
 
     const handleChangeDate = (e) => {
         setDate(e.target.value);
-        dispatch(e.target.value)
+        dispatch(e.target.value);
+
+        if(e.target.value < todayDate()) {
+            setError({
+                ...error,
+                date: 'Select a date that comes after today'
+            })
+        }
     }
 
     const handleChange = (e) => {
-        if (e.target.name === 'date') {
-            setDate(e.target.value);
-            dispatch(e.target.value)
-        } else {
-            setForm({
-                ...form,
-                [e.target.name]: e.target.value
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+    const handleChangeGuests = (e) => {
+        if (e.target.value > 10 || e.target.value < 0) {
+            setError({
+                ...error,
+                guests: 'Please enter number between 1 to 10'
             })
         }
 
+        setForm({ ...form, guests: e.target.value })
     }
 
     const handleDisabled = () => {
@@ -109,9 +122,10 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                         value={form.time}
                         onBlur={() => handleBlur('time')}
                         className={error.time ? 'invalid' : ''}
+                        required
                     >
                         <option disabled hidden className="placeholder-option" value="">Select an appropriate time</option>
-                        
+
                         {availableTimes.map(time => (<option value={time} key={time}>{time}</option>))}
                     </select>
                     {error.time && <span style={{ color: 'red' }}>{error.time}</span>}
@@ -126,7 +140,7 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                         id="guests"
                         name="guests"
                         value={form.guests}
-                        onChange={handleChange}
+                        onChange={handleChangeGuests}
                         onBlur={() => handleBlur('guests')}
                         className={error.guests ? 'invalid' : ''}
                         required />
@@ -141,6 +155,7 @@ export default function BookingForm({ submitForm, availableTimes = [], dispatch 
                         onChange={handleChange}
                         onBlur={() => handleBlur('occasion')}
                         className={error.occasion ? 'invalid' : ''}
+                        required
                     >
                         <option>Select an Occasion</option>
                         <option>Birthday</option>

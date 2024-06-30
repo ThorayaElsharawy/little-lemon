@@ -10,23 +10,33 @@ export default function Nav() {
 
     return (
         <nav>
-            <div className="nav_img">
+            <Link to="/" className="nav_img">
                 <img src={logo} alt="logo" />
-            </div>
+            </Link>
             <div className="menu-icon" onClick={() => setToggle(!toggle)}>
                 <img src={hamburgerIcon} />
             </div>
             <div className={`close-icon ${toggle? 'open': 'hide'}`} onClick={() => setToggle(!toggle)}>
                 <IoMdCloseCircle />
             </div>
-            <ul className={`${toggle ? 'nav_items_md open' : 'nav_items nav_items_show'}`}>
-                <li onClick={() => setToggle(!toggle)}><Link to="/">HOME</Link></li>
+            <ul className={`${toggle ? 'hide' : 'nav_items nav_items_show'}`}>
+                <li><Link to="/">HOME</Link></li>
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">MENU</a></li>
-                <li  onClick={() => setToggle(!toggle)}><Link to="/booking">RESERVATION</Link></li>
+                <li><Link to="/booking">RESERVATION</Link></li>
                 <li><a href="#">ORDER ONLINE</a></li>
                 <li><a href="#">LOGIN</a></li>
             </ul>
+
+            <ul className={`${toggle ? 'nav_items_md open' : 'hide'}`}>
+                <li onClick={() => setToggle(!toggle)}><Link to="/">HOME</Link></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">MENU</a></li>
+                <li onClick={() => setToggle(!toggle)}><Link to="/booking">RESERVATION</Link></li>
+                <li><a href="#">ORDER ONLINE</a></li>
+                <li><a href="#">LOGIN</a></li>
+            </ul>
+            
         </nav>
     )
 }
